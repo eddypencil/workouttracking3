@@ -87,7 +87,8 @@ class SignInScreen extends StatelessWidget {
                                   return null;
                                 },
                                 onChanged: (value) {
-                                  authCubit.signInPasswordController.text = value;
+                                  authCubit.signInPasswordController.text =
+                                      value;
                                 },
                                 obscureText: true,
                                 readOnly: false,
@@ -97,20 +98,32 @@ class SignInScreen extends StatelessWidget {
                                 onPressed: () {
                                   if (authCubit.signInFormKey.currentState!
                                       .validate()) {
-                                    authCubit.signInWithFire().then((value){
+                                    authCubit.signInWithFire().then((value) {
                                       Navigator.pushReplacement(
                                         context,
                                         PageRouteBuilder(
-                                          pageBuilder: (context, animation, secondaryAnimation) => BlocProvider(
-  create: (context) => AuthCubit()..getUserInfoFire(),
-  child: MenuView(),
-),
-                                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                          pageBuilder: (context, animation,
+                                                  secondaryAnimation) =>
+                                              BlocProvider(
+                                            create: (context) =>
+                                                AuthCubit()..getUserInfoFire(),
+                                            child: MenuView(),
+                                          ),
+                                          transitionsBuilder: (context,
+                                              animation,
+                                              secondaryAnimation,
+                                              child) {
                                             return FadeTransition(
                                               opacity: animation,
                                               child: child,
                                             );
                                           },
+                                        ),
+                                      );
+                                    }).catchError((error) {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                          content: Text("ceridantial invalid"),
                                         ),
                                       );
                                     });
@@ -134,12 +147,12 @@ class SignInScreen extends StatelessWidget {
                                       .textTheme
                                       .bodyMedium!
                                       .copyWith(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge!
-                                        .color!
-                                        .withOpacity(0.64),
-                                  ),
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .color!
+                                            .withOpacity(0.64),
+                                      ),
                                 ),
                               ),
                               TextButton(
@@ -147,8 +160,11 @@ class SignInScreen extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     PageRouteBuilder(
-                                      pageBuilder: (context, animation, secondaryAnimation) => SignUpScreen(),
-                                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                      pageBuilder: (context, animation,
+                                              secondaryAnimation) =>
+                                          SignUpScreen(),
+                                      transitionsBuilder: (context, animation,
+                                          secondaryAnimation, child) {
                                         return FadeTransition(
                                           opacity: animation,
                                           child: child,
@@ -160,11 +176,13 @@ class SignInScreen extends StatelessWidget {
                                 child: Text.rich(
                                   const TextSpan(
                                     text: "Don’t have an account? ",
-                                    style: TextStyle(color: AppColors.darkTertiaryColor),
+                                    style: TextStyle(
+                                        color: AppColors.darkTertiaryColor),
                                     children: [
                                       TextSpan(
                                         text: "Sign Up",
-                                        style: TextStyle(color: Color(0xFF00BF6D)),
+                                        style:
+                                            TextStyle(color: Color(0xFF00BF6D)),
                                       ),
                                     ],
                                   ),
@@ -172,23 +190,19 @@ class SignInScreen extends StatelessWidget {
                                       .textTheme
                                       .bodyMedium!
                                       .copyWith(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge!
-                                        .color!
-                                        .withOpacity(0.64),
-                                  ),
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge!
+                                            .color!
+                                            .withOpacity(0.64),
+                                      ),
                                 ),
                               ),
                             ],
                           ),
                         ),
                       ],
-
-
                     ),
-
-
                   ),
                   // Gradient effect at the bottom of the screen
                   Positioned(
