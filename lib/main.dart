@@ -2,10 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:workout_tracking/models/blocs/cubit/workoutcubit.dart';
 import 'package:workout_tracking/models/repos/data_repo.dart';
+import 'package:workout_tracking/screens/Auth_Screen/Login_Screen.dart';
+import 'package:workout_tracking/screens/Auth_Screen/Splash_Screen/Splash_Screen.dart';
 import 'package:workout_tracking/view/menu/menu_view.dart';
 import 'common/color_extension.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'models/data/Local/SharedPerfrence.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  LocalData.init();
+
   runApp(const MyApp());
 }
 
@@ -24,7 +35,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: TColor.primary),
           useMaterial3: true,
         ),
-        home: const MenuView(),
+        home: SplashScreen(),
       ),
     );
   }

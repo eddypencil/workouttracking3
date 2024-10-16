@@ -53,7 +53,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.grey[850],
-        unselectedItemColor: grey,
         onTap: _onItemTapped,
       ),
     );

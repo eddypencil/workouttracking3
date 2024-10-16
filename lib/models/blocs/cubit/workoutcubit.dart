@@ -38,6 +38,9 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     categoriesFilter(); 
   }
 
+
+
+
   void categoriesFilter() async {
     List<Exercise> exercises = await _dataRepo.getExercises();
     switch (_selected_index) {

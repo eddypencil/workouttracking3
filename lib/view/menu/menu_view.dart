@@ -1,7 +1,13 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:workout_tracking/models/blocs/cubit/AuthCubit/auth_cubit.dart';
+import 'package:workout_tracking/models/blocs/cubit/StoreCubit/srore_cubit.dart';
+import 'package:workout_tracking/screens/Auth_Screen/Login_Screen.dart';
 import 'package:workout_tracking/screens/presets.dart';
 import 'package:workout_tracking/view/home/home_view.dart';
 import 'package:workout_tracking/view/menu/yoga_view.dart';
@@ -10,6 +16,8 @@ import 'package:workout_tracking/view/settings/setting_view.dart';
 import '../../common/color_extension.dart';
 import '../../common_widget/menu_cell.dart';
 import '../../common_widget/plan_row.dart';
+import '../../consts/Colors.dart';
+import '../../screens/ExerciseHistoryScreen/ExerciseHistoryScreen.dart';
 import '../exercise/exercise_view_2.dart';
 import '../meal_plan/meal_plan_view_2.dart';
 import '../running/running_view.dart';
@@ -65,6 +73,11 @@ class _MenuViewState extends State<MenuView> {
     {"name": "Tips", "image": "assets/img/menu_tips.png", "tag": "9"},
     {"name": "Settings", "image": "assets/img/menu_settings.png", "tag": "10"},
     {"name": "Support", "image": "assets/img/menu_support.png", "tag": "11"},
+    {
+      "name": "History",
+      "image": "assets/img/menu_running.png",
+      "tag": "12"
+    },
   ];
 
   @override
@@ -77,6 +90,7 @@ class _MenuViewState extends State<MenuView> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.sizeOf(context);
+    var authCubit = AuthCubit.get(context);
     return Scaffold(
       drawer: Drawer(
           width: media.width,
@@ -161,12 +175,26 @@ class _MenuViewState extends State<MenuView> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "Switch Account",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: TColor.secondaryText,
-                                    fontWeight: FontWeight.w700),
+                              TextButton(
+                                onPressed: () { authCubit.signOut().then(
+                                  (value) {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return SignInScreen();
+                                        },
+                                      ),
+                                    );
+                                  },
+                                ); },
+                                child: Text(
+                                  "log out",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: TColor.secondaryText,
+                                      fontWeight: FontWeight.w700),
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 20),
@@ -232,53 +260,63 @@ class _MenuViewState extends State<MenuView> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter)),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 30),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 54,
-                          height: 54,
-                          decoration: BoxDecoration(
-                              color: TColor.white,
-                              borderRadius: BorderRadius.circular(27)),
-                          alignment: Alignment.center,
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(25),
-                              child: Image.asset(
-                                "assets/img/u1.png",
-                                width: 50,
-                                height: 50,
-                                fit: BoxFit.cover,
-                              )),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text("Dababaa",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: TColor.white,
-                                      fontWeight: FontWeight.w700)),
-                              const SizedBox(
-                                height: 4,
+                  BlocBuilder<AuthCubit, AuthState>(
+                    builder: (context, state) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 30),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.15,
+                              height: 54,
+                              decoration: BoxDecoration(
+                                  color: TColor.white,
+                                  borderRadius: BorderRadius.circular(27)),
+                              alignment: Alignment.center,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(25),
+                                child: CachedNetworkImage(
+                                  imageUrl: authCubit.User?.profileImage ?? "",
+                                  width: 50,
+                                  height: 50,
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) => Center(
+                                      child:
+                                          LoadingAnimationWidget.discreteCircle(
+                                              color: AppColors.green,
+                                              size: 20)),
+                                ),
                               ),
-                              Text("Profile",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: TColor.white,
-                                      fontWeight: FontWeight.w500))
-                            ],
-                          ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Flexible(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(authCubit.User?.userName ?? "",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: TColor.white,
+                                          fontWeight: FontWeight.w700)),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Text("Profile",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: TColor.white,
+                                          fontWeight: FontWeight.w500))
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      );
+                    },
                   )
                 ],
               ),
@@ -364,6 +402,16 @@ class _MenuViewState extends State<MenuView> {
                         ),
                       ),
                     );
+                    break;
+
+                  case "12":
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BlocProvider(
+                                  create: (context) => SaveCubit()..getUserExcersiceInfo(),
+                                  child: ExerciseHistoryScreen(),
+                                )));
                     break;
                   default:
                 }

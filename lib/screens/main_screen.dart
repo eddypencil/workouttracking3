@@ -18,7 +18,7 @@ class MainScreen extends StatelessWidget {
               onPressed: () {},
               icon: const Icon(
                 FontAwesomeIcons.fire,
-                color: orange,
+                color: Colors.orange,
               ),
             ),
           ],
@@ -126,7 +126,7 @@ class FoodCard extends StatelessWidget {
           Text(
             '1234 Cal',
             style: GoogleFonts.roboto(
-              color: grey,
+              color: Colors.grey,
               fontSize: 18,
             ),
           )
@@ -180,7 +180,7 @@ class ExerciseList extends StatelessWidget {
                   Text(
                     '1234 Exercise',
                     style: GoogleFonts.roboto(
-                      color: grey,
+                      color: Colors.grey,
                       fontSize: 18,
                     ),
                   )
@@ -203,7 +203,7 @@ class MyWorkouts extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      splashColor: mintGreen,
+      splashColor: Colors.green,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -242,7 +242,7 @@ class MyWorkouts extends StatelessWidget {
                         style: GoogleFonts.roboto(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: grey,
+                          color: Colors.grey,
                         ),
                       ),
                     ),
@@ -250,32 +250,32 @@ class MyWorkouts extends StatelessWidget {
                       children: [
                        const Icon(
                           Icons.access_time_filled,
-                          color: mintGreen,
+                          color: Colors.greenAccent,
                         ),
                         const Text(
                           ' 25 ',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, color: white),
+                              fontWeight: FontWeight.bold, color: Colors.white),
                         ),
                         Text(
                           ' min ',
-                          style: GoogleFonts.roboto(color: grey),
+                          style: GoogleFonts.roboto(color: Colors.white),
                         ),
                         const SizedBox(
                           width: 16,
                         ),
                         const Icon(
                           FontAwesomeIcons.bolt,
-                          color: mintGreen,
+                          color: Colors.greenAccent,
                         ),
                         const Text(
                           ' 250 ',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, color: white),
+                              fontWeight: FontWeight.bold, color: Colors.white),
                         ),
                         Text(
                           ' cal ',
-                          style: GoogleFonts.roboto(color: grey),
+                          style: GoogleFonts.roboto(color: Colors.grey),
                         ),
                       ],
                     )
