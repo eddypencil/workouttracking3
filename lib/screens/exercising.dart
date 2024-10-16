@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_tracking/common/color_extension.dart';
+import 'package:workout_tracking/models/blocs/cubit/AuthCubit/auth_cubit.dart';
+import 'package:workout_tracking/models/blocs/cubit/StoreCubit/srore_cubit.dart';
 import 'package:workout_tracking/models/data/data.dart';
 import 'package:workout_tracking/models/blocs/cubit/workoutcubit.dart';
 import 'package:workout_tracking/view/menu/menu_view.dart';
@@ -51,16 +53,23 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen> {
       workoutData: workoutDataList,
     );
 
+    SaveCubit().setUserExcersiceInfo(endDate: workoutSession.finishTime.toString(), startDate: workoutSession.startTime.toString(), listWorkOuts: workoutSession.workoutData.toList());
+
+
     print('Workout Session Created:');
     print('Start Time: $startTime');
     print('Finish Time: $finishTime');
     print('Workout Data: ${workoutDataList.length} exercises');
 
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => MenuView()),
-      (Route<dynamic> route) => false,
-    );
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => BlocProvider(
+  create: (context) => AuthCubit()..getUserInfoFire(),
+  child: MenuView(),
+)));
+
+    // clear the workout data
+    context.read<ExerciseCubit>().workout.clear();
+
+
   }
 
   @override
