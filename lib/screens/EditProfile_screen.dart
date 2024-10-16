@@ -6,6 +6,8 @@ void main() {
 }
 
 class EditProfileApp extends StatelessWidget {
+  const EditProfileApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +21,8 @@ class EditProfileScreen extends StatelessWidget {
   final Color darkGreen = Color(0xFF013220);
   final Color olive = Color(0xFF3E4E3B);
   final Color black = Color(0xFF111111);
+
+  EditProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +187,7 @@ class CustomTextField extends StatelessWidget {
   final String labelText;
   final Color darkGreen;
 
-  CustomTextField({required this.labelText, required this.darkGreen});
+  const CustomTextField({super.key, required this.labelText, required this.darkGreen});
 
   @override
   Widget build(BuildContext context) {

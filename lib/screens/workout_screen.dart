@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_tracking/models/blocs/cubit/workoutcubit.dart';
-import 'package:workout_tracking/models/data/data.dart';
 import 'package:workout_tracking/models/repos/data_repo.dart';
 import 'package:workout_tracking/screens/presets.dart';
 

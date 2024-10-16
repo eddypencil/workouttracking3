@@ -118,7 +118,7 @@ class ExerciseTile extends StatelessWidget {
 class ModelSheet extends StatefulWidget {
   final Exercise exercise; // Ensure this is passed to the widget
 
-  const ModelSheet({Key? key, required this.exercise}) : super(key: key);
+  const ModelSheet({super.key, required this.exercise});
 
   @override
   _ModelSheetState createState() => _ModelSheetState();
@@ -229,10 +229,10 @@ class _ModelSheetState extends State<ModelSheet> {
                             );
                         Navigator.pop(context);
                       },
-                child: Text('Add Exercise'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: _hasEmptyFields() ? Colors.grey : TColor.primary,
                 ),
+                child: Text('Add Exercise'),
               ),
               const SizedBox(width: 8),
               ElevatedButton(

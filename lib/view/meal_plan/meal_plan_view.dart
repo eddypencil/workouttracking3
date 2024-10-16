@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_tracking/common/color_extension.dart';
-import 'package:workout_tracking/consts/colors.dart';
 import 'package:workout_tracking/models/blocs/cubit/mealcubit.dart';
 import 'package:workout_tracking/models/data/data.dart';
 import 'package:workout_tracking/models/repos/data_repo.dart';

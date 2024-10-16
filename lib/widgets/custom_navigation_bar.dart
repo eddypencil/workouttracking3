@@ -8,6 +8,8 @@ import 'package:workout_tracking/screens/workout_screen.dart';
 
 
 class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({super.key});
+
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }

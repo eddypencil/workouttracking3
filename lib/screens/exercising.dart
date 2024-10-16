@@ -9,7 +9,7 @@ import 'package:workout_tracking/models/blocs/cubit/workoutcubit.dart';
 import 'package:workout_tracking/view/menu/menu_view.dart';
 
 class WorkoutSessionScreen extends StatefulWidget {
-  const WorkoutSessionScreen({Key? key}) : super(key: key);
+  const WorkoutSessionScreen({super.key});
 
   @override
   _WorkoutSessionScreenState createState() => _WorkoutSessionScreenState();
@@ -136,6 +136,8 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen> {
 
 
 class TimerWidget extends StatefulWidget {
+  const TimerWidget({super.key});
+
   @override
   _TimerWidgetState createState() => _TimerWidgetState();
 }

@@ -6,6 +6,8 @@ void main() {
 }
 
 class SettingsApp extends StatelessWidget {
+  const SettingsApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +21,8 @@ class SettingsScreen extends StatelessWidget {
   final Color darkGreen = Color(0xFF013220);
   final Color olive = Color(0xFF3E4E3B);
   final Color black = Color(0xFF111111);
+
+  SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

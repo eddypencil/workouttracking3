@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:workout_tracking/view/workout/workout_detail_view.dart';
 import '../../common/color_extension.dart';
 
 class WorkoutView2 extends StatefulWidget {

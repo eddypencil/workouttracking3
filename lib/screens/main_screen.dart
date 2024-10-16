@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workout_tracking/consts/colors.dart';
 import 'package:workout_tracking/widgets/calender_widget.dart';
 
 class MainScreen extends StatelessWidget {

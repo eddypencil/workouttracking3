@@ -220,7 +220,7 @@ class StatCard extends StatelessWidget {
   final Color color;
   final bool isFullWidth;
 
-  StatCard({
+  const StatCard({super.key, 
     required this.label,
     required this.value,
     required this.color,
@@ -272,7 +272,7 @@ class GoalItem extends StatelessWidget {
   final Color color;
   final VoidCallback onPressed;
 
-  GoalItem({required this.label, required this.color, required this.onPressed});
+  const GoalItem({super.key, required this.label, required this.color, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

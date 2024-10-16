@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class SocalCard extends StatelessWidget {
   const SocalCard({
-    Key? key,
+    super.key,
     required this.icon,
     required this.press,
-  }) : super(key: key);
+  });
 
   final Widget icon;
   final VoidCallback press;

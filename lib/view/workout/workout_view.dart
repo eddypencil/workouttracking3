@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:workout_tracking/common/color_extension.dart';
-import 'package:workout_tracking/view/workout/workout_detail_view.dart';
 import '../../common_widget/round_button.dart';
 
 class WorkoutView extends StatefulWidget {

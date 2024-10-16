@@ -3,7 +3,7 @@ import '../../common/color_extension.dart';
 
 class TipsDetailView extends StatefulWidget {
   final Map<String, dynamic> tObj;
-  const TipsDetailView({Key? key, required this.tObj}) : super(key: key);
+  const TipsDetailView({super.key, required this.tObj});
 
   @override
   _TipsDetailViewState createState() => _TipsDetailViewState();

@@ -113,11 +113,11 @@ class AuthCubit extends Cubit<AuthState> {
     final uid = user.uid;
     currentUid = uid;
     await FirebaseFirestore.instance.collection(Collections.users).doc(uid).set({
-      "UserName": "${emailController.text.split('@')[0]}",
+      "UserName": emailController.text.split('@')[0],
       "Email": emailController.text,
       "uid": uid
     });
-    print("User added to Firestore" + currentUid );
+    print("User added to Firestore$currentUid" );
 
   }
 
@@ -150,7 +150,7 @@ class AuthCubit extends Cubit<AuthState> {
   // get user Info from Firebase
   Future<void>getUserInfoFire()async {
     emit(GetUserInfoLoading());
-    await FirebaseFirestore.instance.collection(Collections.users).snapshots().listen((value) {
+    FirebaseFirestore.instance.collection(Collections.users).snapshots().listen((value) {
       for (var doc in value.docs) {
         String docUid = doc.get('uid');
         if (LocalData.getData(key: SharedKey.uid) == docUid) {
