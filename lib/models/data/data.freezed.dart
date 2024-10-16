@@ -512,3 +512,228 @@ abstract class _Session implements Session {
   _$$SessionImplCopyWith<_$SessionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$Meal {
+  String get name => throw _privateConstructorUsedError;
+  List<String> get ingredients => throw _privateConstructorUsedError;
+  String get instructions => throw _privateConstructorUsedError;
+  int get calories => throw _privateConstructorUsedError;
+  String get image_url => throw _privateConstructorUsedError;
+
+  /// Create a copy of Meal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $MealCopyWith<Meal> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MealCopyWith<$Res> {
+  factory $MealCopyWith(Meal value, $Res Function(Meal) then) =
+      _$MealCopyWithImpl<$Res, Meal>;
+  @useResult
+  $Res call(
+      {String name,
+      List<String> ingredients,
+      String instructions,
+      int calories,
+      String image_url});
+}
+
+/// @nodoc
+class _$MealCopyWithImpl<$Res, $Val extends Meal>
+    implements $MealCopyWith<$Res> {
+  _$MealCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Meal
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? ingredients = null,
+    Object? instructions = null,
+    Object? calories = null,
+    Object? image_url = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredients: null == ingredients
+          ? _value.ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      instructions: null == instructions
+          ? _value.instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
+              as String,
+      calories: null == calories
+          ? _value.calories
+          : calories // ignore: cast_nullable_to_non_nullable
+              as int,
+      image_url: null == image_url
+          ? _value.image_url
+          : image_url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$MealImplCopyWith<$Res> implements $MealCopyWith<$Res> {
+  factory _$$MealImplCopyWith(
+          _$MealImpl value, $Res Function(_$MealImpl) then) =
+      __$$MealImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String name,
+      List<String> ingredients,
+      String instructions,
+      int calories,
+      String image_url});
+}
+
+/// @nodoc
+class __$$MealImplCopyWithImpl<$Res>
+    extends _$MealCopyWithImpl<$Res, _$MealImpl>
+    implements _$$MealImplCopyWith<$Res> {
+  __$$MealImplCopyWithImpl(_$MealImpl _value, $Res Function(_$MealImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Meal
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? ingredients = null,
+    Object? instructions = null,
+    Object? calories = null,
+    Object? image_url = null,
+  }) {
+    return _then(_$MealImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredients: null == ingredients
+          ? _value._ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      instructions: null == instructions
+          ? _value.instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
+              as String,
+      calories: null == calories
+          ? _value.calories
+          : calories // ignore: cast_nullable_to_non_nullable
+              as int,
+      image_url: null == image_url
+          ? _value.image_url
+          : image_url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MealImpl implements _Meal {
+  const _$MealImpl(
+      {required this.name,
+      required final List<String> ingredients,
+      required this.instructions,
+      required this.calories,
+      required this.image_url})
+      : _ingredients = ingredients;
+
+  @override
+  final String name;
+  final List<String> _ingredients;
+  @override
+  List<String> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ingredients);
+  }
+
+  @override
+  final String instructions;
+  @override
+  final int calories;
+  @override
+  final String image_url;
+
+  @override
+  String toString() {
+    return 'Meal(name: $name, ingredients: $ingredients, instructions: $instructions, calories: $calories, image_url: $image_url)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MealImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality()
+                .equals(other._ingredients, _ingredients) &&
+            (identical(other.instructions, instructions) ||
+                other.instructions == instructions) &&
+            (identical(other.calories, calories) ||
+                other.calories == calories) &&
+            (identical(other.image_url, image_url) ||
+                other.image_url == image_url));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      const DeepCollectionEquality().hash(_ingredients),
+      instructions,
+      calories,
+      image_url);
+
+  /// Create a copy of Meal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MealImplCopyWith<_$MealImpl> get copyWith =>
+      __$$MealImplCopyWithImpl<_$MealImpl>(this, _$identity);
+}
+
+abstract class _Meal implements Meal {
+  const factory _Meal(
+      {required final String name,
+      required final List<String> ingredients,
+      required final String instructions,
+      required final int calories,
+      required final String image_url}) = _$MealImpl;
+
+  @override
+  String get name;
+  @override
+  List<String> get ingredients;
+  @override
+  String get instructions;
+  @override
+  int get calories;
+  @override
+  String get image_url;
+
+  /// Create a copy of Meal
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$MealImplCopyWith<_$MealImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

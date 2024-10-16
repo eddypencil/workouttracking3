@@ -38,4 +38,5 @@ flutter:
     - assets/img/
     - assets/images/
     - assets/json/exercises.json
+    - assets/json/meals.json
 

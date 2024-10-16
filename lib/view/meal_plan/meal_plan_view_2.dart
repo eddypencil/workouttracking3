@@ -1,205 +1,142 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:workout_tracking/common/color_extension.dart';
+import 'package:workout_tracking/consts/colors.dart';
+import 'package:workout_tracking/models/blocs/cubit/mealcubit.dart';
+import 'package:workout_tracking/models/data/data.dart';
+import 'package:workout_tracking/models/repos/data_repo.dart';
+import 'package:workout_tracking/screens/mealdetalis.dart';
 
-import '../../common/color_extension.dart';
-import '../../common_widget/tab_button.dart';
-
-class MealPlanView2 extends StatefulWidget {
+class MealPlanView2 extends StatelessWidget {
   const MealPlanView2({super.key});
 
   @override
-  State<MealPlanView2> createState() => _MealPlanView2State();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => MealCubit(DataRepo())..fetchMeals(),
+      child: Scaffold(
+        appBar: AppBar(title: const Text("Recommended Meals"),backgroundColor: TColor.primary,),
+        body: BlocBuilder<MealCubit, MealState>(
+          builder: (context, state) {
+            return state.when(
+              loading: () => CircularProgressIndicator.adaptive(),
+              loaded: (data) {
+                return ListView.builder(
+                  itemCount: data.length,
+                  itemBuilder: (context, index) => MealCard(meal: data[index]),
+                );
+              },
+              error: (message) => Text("error"),
+            );
+          },
+        ),
+      ),
+    );
+  }
 }
 
-class _MealPlanView2State extends State<MealPlanView2> {
-  int isActiveTab = 0;
-  List workArr = [
-    {"name": "Breafast", "title":"vegetable, Sandwich", "image": "assets/img/f1.png"},
-    {"name": "Snack", "title": "Boat, nut, butter", "image": "assets/img/f2.png"},
-    {
-      "name": "Breafast",
-      "title": "vegetable, Sandwich",
-      "image": "assets/img/f3.png",
-    },
-    {
-      "name": "Snack",
-       "title": "Boat, nut, butter",
-      "image": "assets/img/f4.png",
-    },
-  ];
+class MealCard extends StatelessWidget {
+  final Meal meal;
+  const MealCard({
+    super.key,
+    required this.meal,
+  });
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.sizeOf(context);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: TColor.primary,
-        centerTitle: true,
-        elevation: 0,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              "assets/img/black_white.png",
-              width: 25,
-              height: 25,
-            )),
-        title: Text(
-          "Meal Plan",
-          style: TextStyle(
-              color: TColor.white, fontSize: 20, fontWeight: FontWeight.w700),
-        ),
-      ),
-      body: Column(children: [
-        Container(
-          decoration: BoxDecoration(color: TColor.white, boxShadow: const [
-            BoxShadow(
-                color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))
-          ]),
-          child: Row(
+    return InkWell(
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MealDetailView(meal: meal),
+          ),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+          height: 200,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Stack(
             children: [
-              Expanded(
-               
-                child: TabButton2(
-                  title: "Water",
-                  isActive: isActiveTab == 0,
-                  onPressed: () {
-                    setState(() {
-                      isActiveTab = 0;
-                    });
-                  },
-                ),
-              ),
-              Expanded(
+              Container(
+                width: MediaQuery.of(context).size.width,
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),),
                 
-                child: TabButton2(
-                  title: "Food",
-                  isActive: isActiveTab == 1,
-                  onPressed: () {
-                    setState(() {
-                      isActiveTab = 1;
-                    });
+                child: Image.network(
+                  meal.image_url,
+                  fit: BoxFit.fill,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.grey, // Grey placeholder
+                      height: 200,
+                      width: double.infinity,
+                      child: const Icon(
+                        Icons.error, // Optional error icon
+                        color: Colors.white,
+                        size: 50, // Adjust size as needed
+                      ),
+                    );
+                  },
+                  // Optionally, you can use a loading builder
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                (loadingProgress.expectedTotalBytes ?? 1)
+                            : null,
+                      ),
+                    );
                   },
                 ),
               ),
-             
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 120,
+                    ),
+                    Text(
+                      'Calories',
+                      style: GoogleFonts.roboto(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      meal.calories.toString(),
+                      style: GoogleFonts.roboto(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: Image.asset(
-                  "assets/img/black_fo.png",
-                  width: 20,
-                  height: 20,
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  "Sunday, AUG 26",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: TColor.secondaryText,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700),
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Image.asset(
-                  "assets/img/next_go.png",
-                  width: 20,
-                  height: 20,
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        Expanded(
-          child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-              itemCount: workArr.length,
-              itemBuilder: (context, index) {
-                var wObj = workArr[index] as Map? ?? {};
-                return Container(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  decoration: BoxDecoration(color: TColor.white),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                     
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          wObj["image"].toString(),
-                          width: media.width,
-                          height: media.width * 0.55,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                          
-                       
-                       Text(
-                        wObj["name"],
-                        style: TextStyle(
-                            color: TColor.secondaryText,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700),
-                      ),
-
-                      Text(
-                        wObj["title"],
-                        style: TextStyle(
-                            color: TColor.secondaryText,
-                            fontSize: 14),
-                      ),
-                      
-                    ],
-                  ),
-                );
-              }),
-        ),
-      ]),
-      bottomNavigationBar: BottomAppBar(
-        elevation: 1,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              InkWell(
-                onTap: () {},
-                child: Image.asset("assets/img/menu_running.png",
-                    width: 25, height: 25),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Image.asset("assets/img/menu_meal_plan.png",
-                    width: 25, height: 25),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Image.asset("assets/img/menu_home.png",
-                    width: 25, height: 25),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Image.asset("assets/img/menu_weight.png",
-                    width: 25, height: 25),
-              ),
-              InkWell(
-                onTap: () {},
-                child:
-                    Image.asset("assets/img/more.png", width: 25, height: 25),
-              ),
-            ],
-          ),
-        ),
+        Text(meal.name,overflow: TextOverflow.ellipsis, // Handling text overflow
+                                          style: TextStyle(
+                                              color: TColor.secondaryText,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w700),)
+          ],
+        )
       ),
     );
   }

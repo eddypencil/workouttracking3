@@ -62,15 +62,11 @@ class _TipsDetailViewState extends State<TipsDetailView> {
             ),
             _buildSectionTitle("Drink water"),
             _buildSectionContent(
-              "Lore ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n"
-              "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
-              "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              "To enhance your fitness journey, aim to drink plenty of water throughout the day by setting a daily intake goal based on your weight and activity level. Drink a glass of water before meals to aid digestion and keep hydrated during workouts by sipping water every 15-20 minutes. Monitor your urine color as a hydration indicator; pale yellow is ideal. Carry a reusable water bottle for convenience, and consider adding natural flavors like lemon or cucumber to make water more enjoyable. Lastly, listen to your body and increase your water intake in hot weather or during intense exercise, as proper hydration significantly impacts performance and recovery."
             ),
             _buildSectionTitle("Calories"),
             _buildSectionContent(
-              "Lore ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n"
-              "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
-              "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+              "To effectively manage your fitness goals, understanding calories is crucial. Track your daily caloric intake based on your personal energy needs, which can vary depending on factors like age, weight, and activity level. Focus on the quality of calories by prioritizing nutrient-dense foods, such as fruits, vegetables, whole grains, and lean proteins, over empty calories found in processed foods. Consider using a food diary or app to help monitor your intake and make adjustments as needed. Additionally, remember that balancing the calories you consume with those you burn through exercise is key for weight management, whether you're looking to lose, maintain, or gain weight.",
             ),
           ],
         ),

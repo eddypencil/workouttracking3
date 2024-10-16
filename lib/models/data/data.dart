@@ -56,3 +56,30 @@ class WorkoutSession {
     required this.workoutData,
   });
 }
+
+
+
+@freezed
+class Meal with _$Meal {
+  const factory Meal({
+    required String name,
+    required List<String> ingredients,
+    required String instructions,
+    required int calories,
+    required String image_url,
+  }) = _Meal;
+
+   factory Meal.fromJson(Map<String, dynamic> json) {
+    return Meal(
+      name: json['name'] as String? ?? '',  // Provide a default value or handle nulls
+      ingredients: (json['ingredients'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      instructions: json['instructions'] as String? ?? '',
+      calories: json['calories'] as int? ?? 0,  // Default to 0 if null
+      image_url: json['image_url'] as String? ?? '',
+    );
+  }
+}
+
+

@@ -59,9 +59,7 @@ class _MenuViewState extends State<MenuView> {
   ];
 
   List menuArr = [
-    
     {"name": "Workout", "image": "assets/img/menu_weight.png", "tag": "2"},
-  
     {"name": "Meal Plan", "image": "assets/img/menu_meal_plan.png", "tag": "5"},
     {"name": "Exercises", "image": "assets/img/menu_exercises.png", "tag": "8"},
     {"name": "Tips", "image": "assets/img/menu_tips.png", "tag": "9"},
@@ -351,6 +349,21 @@ class _MenuViewState extends State<MenuView> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => const SettingsView()));
+                    break;
+                  case "11":
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                            'Contact us at: Workout_tracking@workouttracking.com'),
+                        duration: Duration(seconds: 5),
+                        action: SnackBarAction(
+                          label: 'OK',
+                          onPressed: () {
+                            // Optionally handle action when the user presses "OK"
+                          },
+                        ),
+                      ),
+                    );
                     break;
                   default:
                 }

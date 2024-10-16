@@ -17,6 +17,21 @@ Future<List<Exercise>> getExercises () async{
   }
 
 }
+
+
+
+Future<List<Meal>> getMeals() async{
+  try{
+  String jsonString = await rootBundle.loadString('assets/json/meals.json');
+  List<dynamic> mealJson = json.decode(jsonString);
+  List<Meal> meals = mealJson.map((mealJson) => Meal.fromJson(mealJson)).toList() ;
+  return meals;
+  }catch (e){
+    print(e);
+    return [];
+  }
+
+}
 }
 
 
