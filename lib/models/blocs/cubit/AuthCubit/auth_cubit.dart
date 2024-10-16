@@ -171,7 +171,7 @@ class AuthCubit extends Cubit<AuthState> {
 
 
 
-  // signOut
+ 
 
   Future<void> signOut() async {
     emit(SignOutLoading());
@@ -186,7 +186,7 @@ class AuthCubit extends Cubit<AuthState> {
 
 
 
-  // clear controllers
+
   void clearControllers() {
     emailController.clear();
     passwordController.clear();
