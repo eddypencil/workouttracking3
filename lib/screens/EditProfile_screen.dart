@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workout_tracking/screens/profile_screen.dart';
 
-void main() {
-  runApp(EditProfileApp());
-}
 
 class EditProfileApp extends StatelessWidget {
   @override

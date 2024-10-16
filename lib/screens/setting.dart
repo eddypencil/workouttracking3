@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:workout_tracking/screens/profile_screen.dart';
+
+import '../models/blocs/cubit/AuthCubit/auth_cubit.dart';
 
 void main() {
   runApp(SettingsApp());
@@ -61,7 +64,9 @@ class SettingsScreen extends StatelessWidget {
             SizedBox(height: 30),
             Center(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  BlocProvider.of<AuthCubit>(context).signOut();
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: darkGreen,
                   shape: RoundedRectangleBorder(
@@ -83,7 +88,8 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSettingsItem(BuildContext context, String title) {
+  Widget _buildSettingsItem(BuildContext context, String title ) {
+
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
