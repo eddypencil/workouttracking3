@@ -108,18 +108,7 @@ class _ConnectViewState extends State<ConnectView> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    authCubit.signOut().then(
-                      (value) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return SignInScreen();
-                            },
-                          ),
-                        );
-                      },
-                    );
+                   
                   },
                   child: Text(
                     "Log Out",
