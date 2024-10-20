@@ -42,7 +42,6 @@ class SaveCubit extends Cubit<SroreState> {
 
   }
 
-  // get user excersice
   Future<void> getUserExcersiceInfo() async {
     try {
       emit(LoadingGetExcersiceInfo());

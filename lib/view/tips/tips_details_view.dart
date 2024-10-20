@@ -71,16 +71,7 @@ class _TipsDetailViewState extends State<TipsDetailView> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        elevation: 1,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: _buildBottomNavigationItems(),
-          ),
-        ),
-      ),
+      
     );
   }
 
