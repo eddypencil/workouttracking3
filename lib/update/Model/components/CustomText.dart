@@ -11,7 +11,7 @@ class CustomText extends StatelessWidget {
   final int maxLines;
 
   const CustomText({
-    Key? key,
+    super.key,
     required this.text,
     this.fontSize = 16,
     this.color = Colors.black,
@@ -19,7 +19,7 @@ class CustomText extends StatelessWidget {
     this.textAlign = TextAlign.left,
     this.overflow = TextOverflow.ellipsis,
     this.maxLines = 1,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,7 @@ import 'package:workout_tracking/models/blocs/cubit/workoutcubit.dart';
 import 'package:workout_tracking/view/menu/menu_view.dart';
 
 class WorkoutSessionScreen extends StatefulWidget {
-  const WorkoutSessionScreen({Key? key}) : super(key: key);
+  const WorkoutSessionScreen({super.key});
 
   @override
   _WorkoutSessionScreenState createState() => _WorkoutSessionScreenState();
@@ -53,23 +53,19 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen> {
       workoutData: workoutDataList,
     );
 
-    SaveCubit().setUserExcersiceInfo(endDate: workoutSession.finishTime.toString(), startDate: workoutSession.startTime.toString(), listWorkOuts: workoutSession.workoutData.toList());
+    SaveCubit().setUserExcersiceInfo(
+        endDate: workoutSession.finishTime.toString(),
+        startDate: workoutSession.startTime.toString(),
+        listWorkOuts: workoutSession.workoutData.toList());
 
-
-    print('Workout Session Created:');
-    print('Start Time: $startTime');
-    print('Finish Time: $finishTime');
-    print('Workout Data: ${workoutDataList.length} exercises');
-
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => BlocProvider(
-  create: (context) => AuthCubit()..getUserInfoFire(),
-  child: MenuView(),
-)));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => BlocProvider(
+              create: (context) => AuthCubit()..getUserInfoFire(),
+              child: MenuView(),
+            )));
 
     // clear the workout data
     context.read<ExerciseCubit>().workout.clear();
-
-
   }
 
   @override
@@ -109,7 +105,8 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen> {
             Image.network(currentExercise.exercise.image),
             Text(
               currentExercise.exercise.name,
-              style: GoogleFonts.roboto(fontSize: 24, fontWeight: FontWeight.bold),
+              style: GoogleFonts.roboto(
+                  fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             Text(
@@ -119,101 +116,15 @@ class _WorkoutSessionScreenState extends State<WorkoutSessionScreen> {
             const SizedBox(height: 20),
             Text(
               'Weights:',
-              style: GoogleFonts.roboto(fontSize: 18, fontWeight: FontWeight.bold),
+              style: GoogleFonts.roboto(
+                  fontSize: 18, fontWeight: FontWeight.bold),
             ),
             for (var weight in currentExercise.weights)
               Text(weight, style: GoogleFonts.roboto(fontSize: 24)),
             const SizedBox(height: 20),
-            TimerWidget(),
           ],
         ),
       ),
-    );
-  }
-}
-
-
-
-
-class TimerWidget extends StatefulWidget {
-  @override
-  _TimerWidgetState createState() => _TimerWidgetState();
-}
-
-class _TimerWidgetState extends State<TimerWidget> {
-  int _secondsRemaining = 30;
-  bool _isRunning = false;
-
-  void _startTimer() {
-    if (_isRunning) return;
-
-    setState(() {
-      _isRunning = true;
-      _secondsRemaining = 30;
-    });
-
-    _startCountdown(); // Start the countdown
-  }
-
-  Future<void> _startCountdown() async {
-    while (_secondsRemaining > 0) {
-      await Future.delayed(const Duration(seconds: 1));
-      if (mounted) {
-        setState(() {
-          _secondsRemaining--;
-        });
-      } else {
-        return; // Exit if widget is disposed
-      }
-    }
-
-    if (mounted) {
-      setState(() {
-        _isRunning = false; // Timer finished
-      });
-    }
-  }
-
-  void _resetTimer() {
-    // No need to call setState here, just reset local state
-    _secondsRemaining = 30;
-    _isRunning = false;
-  }
-
-  @override
-  void dispose() {
-    _resetTimer(); // Just reset the local state without calling setState
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'Timer: $_secondsRemaining',
-          style: GoogleFonts.roboto(fontSize: 20),
-        ),
-        const SizedBox(height: 10),
-        ElevatedButton(
-          onPressed: _startTimer,
-          child: Text(
-            'Start Timer',
-            style: TextStyle(color: TColor.primary),
-          ),
-        ),
-        const SizedBox(height: 10),
-        ElevatedButton(
-          onPressed: () {
-            _resetTimer();
-            _startTimer(); // Restart the timer
-          },
-          child: Text(
-            'Reset Timer',
-            style: TextStyle(color: TColor.primary),
-          ),
-        ),
-      ],
     );
   }
 }

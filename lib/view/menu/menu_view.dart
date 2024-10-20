@@ -9,7 +9,6 @@ import 'package:workout_tracking/models/blocs/cubit/AuthCubit/auth_cubit.dart';
 import 'package:workout_tracking/models/blocs/cubit/StoreCubit/srore_cubit.dart';
 import 'package:workout_tracking/screens/Auth_Screen/Login_Screen.dart';
 import 'package:workout_tracking/screens/presets.dart';
-import 'package:workout_tracking/view/home/home_view.dart';
 import 'package:workout_tracking/view/menu/yoga_view.dart';
 import 'package:workout_tracking/view/settings/setting_view.dart';
 
@@ -20,10 +19,7 @@ import '../../consts/Colors.dart';
 import '../../screens/ExerciseHistoryScreen/ExerciseHistoryScreen.dart';
 import '../exercise/exercise_view_2.dart';
 import '../meal_plan/meal_plan_view_2.dart';
-import '../running/running_view.dart';
-import '../schedule/schedule_view.dart';
 import '../tips/tips_view.dart';
-import '../weight/weight_view.dart';
 
 class MenuView extends StatefulWidget {
   const MenuView({super.key});
@@ -157,7 +153,7 @@ class _MenuViewState extends State<MenuView> {
                                   return PlanRow(
                                     mObj: itemObj,
                                     onPressed: () {
-                                      // Navigator.pop(context);
+                                      
                                       if (index == 1) {
                                         Navigator.push(
                                             context,
@@ -342,12 +338,7 @@ class _MenuViewState extends State<MenuView> {
               mObj: mObj,
               onPressed: () {
                 switch (mObj["tag"].toString()) {
-                  case "1":
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeView()));
-                    break;
+                
                   case "2":
                     Navigator.push(
                         context,
@@ -363,18 +354,7 @@ class _MenuViewState extends State<MenuView> {
                         MaterialPageRoute(
                             builder: (context) => const MealPlanView2()));
                     break;
-                  case "6":
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ScheduleView()));
-                    break;
-                  case "7":
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RunningView()));
-                    break;
+                 
                   case "8":
                     Navigator.push(
                         context,

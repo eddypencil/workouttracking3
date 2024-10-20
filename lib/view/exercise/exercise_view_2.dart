@@ -6,7 +6,7 @@ import 'package:workout_tracking/models/repos/data_repo.dart';
 import 'package:workout_tracking/view/workout/workout_detail_view.dart';
 
 import '../../common/color_extension.dart';
-import '../../common_widget/tab_button.dart';
+
 
 class ExerciseView2 extends StatefulWidget {
   const ExerciseView2({super.key});
@@ -118,7 +118,8 @@ class _ExerciseView2State extends State<ExerciseView2> {
                                     children: [
                                       Text(
                                         data[index].name,
-                                        overflow: TextOverflow.ellipsis, // Handling text overflow
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
                                         style: TextStyle(
                                             color: TColor.secondaryText,
                                             fontSize: 20,

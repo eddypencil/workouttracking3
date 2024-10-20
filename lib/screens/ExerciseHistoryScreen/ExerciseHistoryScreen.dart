@@ -4,8 +4,10 @@ import 'package:intl/intl.dart';
 import 'package:workout_tracking/models/blocs/cubit/StoreCubit/srore_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+import '../../common/color_extension.dart';
+
 class ExerciseHistoryScreen extends StatelessWidget {
-  const ExerciseHistoryScreen({Key? key}) : super(key: key);
+  const ExerciseHistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class ExerciseHistoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Exercise History"),
-        backgroundColor: Colors.teal, // Optional: Set your preferred color
+        backgroundColor: TColor.primary, // Optional: Set your preferred color
       ),
       body: BlocBuilder<SaveCubit, SroreState>(
         builder: (context, state) {

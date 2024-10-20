@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // TODO: add flutter_svg package
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../consts/Colors.dart';
 import '../../../models/blocs/cubit/AuthCubit/auth_cubit.dart';

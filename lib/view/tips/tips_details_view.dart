@@ -3,7 +3,7 @@ import '../../common/color_extension.dart';
 
 class TipsDetailView extends StatefulWidget {
   final Map<String, dynamic> tObj;
-  const TipsDetailView({Key? key, required this.tObj}) : super(key: key);
+  const TipsDetailView({super.key, required this.tObj});
 
   @override
   _TipsDetailViewState createState() => _TipsDetailViewState();
@@ -71,16 +71,7 @@ class _TipsDetailViewState extends State<TipsDetailView> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        elevation: 1,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: _buildBottomNavigationItems(),
-          ),
-        ),
-      ),
+      
     );
   }
 

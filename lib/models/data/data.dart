@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:intl/intl.dart';
 
 part 'data.freezed.dart'; // Add this line
 part 'data.g.dart';       // This line might already be present

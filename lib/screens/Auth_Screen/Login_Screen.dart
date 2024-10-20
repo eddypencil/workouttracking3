@@ -12,7 +12,7 @@ import '../../view/menu/menu_view.dart';
 import 'SignUpFrom/SignUp_Screen.dart';
 
 class SignInScreen extends StatelessWidget {
-  SignInScreen({super.key});
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

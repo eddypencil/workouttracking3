@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workout_tracking/models/blocs/cubit/AuthCubit/auth_cubit.dart';
+import 'package:workout_tracking/screens/Auth_Screen/Login_Screen.dart';
 
 import '../../common/color_extension.dart';
 import '../../common_widget/connect_row.dart';
@@ -49,56 +52,75 @@ class _ConnectViewState extends State<ConnectView> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.sizeOf(context);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: TColor.primary,
-        centerTitle: true,
-        elevation: 0.1,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              "assets/img/black_white.png",
-              width: 25,
-              height: 25,
-            )),
-        title: Text(
-          "Connected",
-          style: TextStyle(
-              color: TColor.white, fontSize: 20, fontWeight: FontWeight.w700),
+    return BlocProvider(
+      create: (context) => AuthCubit(),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: TColor.primary,
+          centerTitle: true,
+          elevation: 0.1,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Image.asset(
+                "assets/img/black_white.png",
+                width: 25,
+                height: 25,
+              )),
+          title: Text(
+            "Connected",
+            style: TextStyle(
+                color: TColor.white, fontSize: 20, fontWeight: FontWeight.w700),
+          ),
         ),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            child: Text(
-              "Choose to Connect social network",
-              style: TextStyle(color: TColor.secondaryText, fontSize: 16),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              child: Text(
+                "Choose to Connect social network",
+                style: TextStyle(color: TColor.secondaryText, fontSize: 16),
+              ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                itemBuilder: (context, index) {
-                  var tObj = connectArr[index] as Map? ?? {};
+            Expanded(
+              child: ListView.builder(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  itemBuilder: (context, index) {
+                    var tObj = connectArr[index] as Map? ?? {};
 
-                  return ConnectRow(
-                    tObj: tObj,
-                    isActive: selectIndex == index,
-                    onPressed: () {
-                      setState(() {
-                        selectIndex = index;
-                      });
-                    },
-                  );
-                },
-                itemCount: connectArr.length),
-          ),
-        ],
+                    return ConnectRow(
+                      tObj: tObj,
+                      isActive: selectIndex == index,
+                      onPressed: () {
+                        setState(() {
+                          selectIndex = index;
+                        });
+                      },
+                    );
+                  },
+                  itemCount: connectArr.length),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                   
+                  },
+                  child: Text(
+                    "Log Out",
+                    style: TextStyle(
+                      color: TColor.primary,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
