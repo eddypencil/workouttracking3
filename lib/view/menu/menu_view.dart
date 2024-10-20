@@ -88,6 +88,11 @@ class _MenuViewState extends State<MenuView> {
     var media = MediaQuery.sizeOf(context);
     var authCubit = AuthCubit.get(context);
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
       drawer: Drawer(
           width: media.width,
           backgroundColor: Colors.transparent,

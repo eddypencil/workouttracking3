@@ -101,17 +101,23 @@ class _SignUpFormState extends State<SignUpForm> {
               const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () async {
-                  if (authCubit.formKey.currentState!.validate()) {
+                  if (authCubit.formKey.currentState!.validate() && authCubit.image != null) {
                     setState(() {
                       isLoading = true; // Show loading indicator
                     });
                     try {
                       await authCubit.signUpWithFire().then((value) async {
-                        await authCubit.uploadImage(
-                          image: authCubit.image!,
-                          email: authCubit.signInEmailController.text,
-                          uid: authCubit.currentUid,
-                        );
+
+
+
+                          await authCubit.uploadImage(
+                            image: authCubit.image!,
+                            email: authCubit.signInEmailController.text,
+                            uid: authCubit.currentUid,
+                          );
+
+
+
                         authCubit.clearControllers();
                         toastification.show(
                           context: context,
@@ -133,6 +139,10 @@ class _SignUpFormState extends State<SignUpForm> {
                         isLoading = false; // Hide loading indicator
                       });
                     }
+                  }
+                  // snakBar image is required
+                  else if (authCubit.image == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Image Profile is required")));
                   }
                 },
                 style: ElevatedButton.styleFrom(
