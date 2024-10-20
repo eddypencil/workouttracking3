@@ -115,6 +115,7 @@ class AuthCubit extends Cubit<AuthState> {
     await FirebaseFirestore.instance.collection(Collections.users).doc(uid).set({
       "UserName": "${emailController.text.split('@')[0]}",
       "Email": emailController.text,
+      "profileImage": "wating for image",
       "uid": uid
     });
     print("User added to Firestore" + currentUid );
